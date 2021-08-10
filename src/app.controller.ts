@@ -20,13 +20,9 @@ export class AppController {
   async redirect(@Req() req, @Res() res){
     const connection = getConnection();
     if(req.body.buttonPress=='update'){
-      const arr = await connection.query('SELECT TOP (100) * FROM [dbo].[storedProc]');
-      for(let i = 0; i <= arr.length; i++){
-        const query = calls.call_1 + i.toString();
-        connection.query(query);
-      }
-    }
-    else
+      const query = calls.call_1 + (req.body.columnToChange).toString();
+      connection.query(query);
+    }else if(req.body.buttonPress=='insert')
       connection.query(calls.call_2);
     return res.redirect('/');
   }

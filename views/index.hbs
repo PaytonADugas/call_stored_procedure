@@ -15,6 +15,10 @@
       h3{
         background: #ff87fb
       }
+      select{
+        padding: 5px;
+        margin-bottom: 10px;
+      }
     </style>
 
   </head>
@@ -29,6 +33,13 @@
     <hr>
 
     <form method="post">
+      <p style="display: inline-block" >Column to update</p>
+      <select name="columnToChange" value='1'>
+        {{#each data}}
+        <option>{{this.columnID}}</option>
+        {{/each}}
+      </select>
+      <br>
       <button name='buttonPress' value='update' style="padding: 10px;" type="submit">UPDATE</button>
       <button name='buttonPress' value='insert' style="padding: 10px;" type="submit">INSERT INTO</button>
     </form>
