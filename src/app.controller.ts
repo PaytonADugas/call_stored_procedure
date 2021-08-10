@@ -2,7 +2,7 @@ import { Controller, Get, Post, Render, Body, Res} from '@nestjs/common';
 import { AppService } from './app.service';
 import {getConnection} from "typeorm";
 
-var calls = require('../storedProcedureCalls/calls.json');
+var calls = require('../public/storedProcedureCalls/calls.json');
 
 @Controller()
 export class AppController {
