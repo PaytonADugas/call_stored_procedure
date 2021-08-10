@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Stored Procedure Call</title>
+
+    <style>
+      table, th, td{
+        border: 1px solid black;
+        text-align: center;
+      }
+      th{
+        padding: 10px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>Press the button to call the stored procedure</h1>
+    <h3>UPDATE [dbo].[test_store_proc] SET someData = RAND() WHERE columnID = 1</h3>
+
+    <form method="post">
+      <button type="submit">Call</button>
+    </form>
+
+    <hr>
+
+    <p>You might have to wait and refresh the page to see the values change</p>
+
+    <table>
+      <thead>
+        <th>columnID</th>
+        <th>someData</th>
+      </thead>
+      <tr>
+        <td>1</td>
+        <td id='1_someData'>{{data}}</td>
+      </tr>
+    </table>
+
+  </body>
+</html>

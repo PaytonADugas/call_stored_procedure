@@ -1,0 +1,3 @@
+{
+  "call": "UPDATE [dbo].[test_store_proc] SET someData = RAND() WHERE columnID = 1"
+}
