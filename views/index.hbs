@@ -12,12 +12,16 @@
       th{
         padding: 10px;
       }
+      h3{
+        background: #ff87fb
+      }
     </style>
 
   </head>
   <body>
-    <h1>Press the button to call the stored procedure</h1>
+    <h1>Press the buttons to call the stored procedures</h1>
     <h3>UPDATE [dbo].[test_store_proc] SET someData = RAND() WHERE columnID = 1</h3>
+    <h3>INSERT INTO [dbo].[storedProc] (someData) VALUES(Rand())</h3>
     <p>This procedure is stored in a JSON file on the server, but it could come from anywhere</p>
     <a href="storedProcedureCalls/calls.json">Json Procedure</a>
     <p style="display: inline-block">|</p>
@@ -25,7 +29,8 @@
     <hr>
 
     <form method="post">
-      <button style="padding: 10px;" type="submit">Call Procedure</button>
+      <button name='buttonPress' value='update' style="padding: 10px;" type="submit">UPDATE</button>
+      <button name='buttonPress' value='insert' style="padding: 10px;" type="submit">INSERT INTO</button>
     </form>
 
     <p>You might have to wait and refresh the page to see the value change</p>
@@ -35,10 +40,12 @@
         <th>columnID</th>
         <th>someData</th>
       </thead>
-      <tr>
-        <td>1</td>
-        <td id='1_someData'>{{data}}</td>
-      </tr>
+      {{#each data}}
+        <tr>
+          <td>{{this.columnID}}</td>
+          <td>{{this.someData}}</td>
+        </tr>
+      {{/each}}
     </table>
 
   </body>

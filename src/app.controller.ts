@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Render, Body, Res} from '@nestjs/common';
+import { Controller, Get, Post, Render, Body, Res, Req} from '@nestjs/common';
 import { AppService } from './app.service';
 import {getConnection} from "typeorm";
 
@@ -12,14 +12,22 @@ export class AppController {
   @Render('index')
   async root(){
     const connection = getConnection();
-    const arr = await connection.query('SELECT TOP (1) * FROM [dbo].[test_store_proc]');
-    return {data: arr[0].someData};
+    const arr = await connection.query('SELECT TOP (100) * FROM [dbo].[storedProc]');
+    return {data: arr};
   }
 
   @Post()
-  redirect(@Res() res){
+  async redirect(@Req() req, @Res() res){
     const connection = getConnection();
-    connection.query(calls.call);
+    if(req.body.buttonPress=='update'){
+      const arr = await connection.query('SELECT TOP (100) * FROM [dbo].[storedProc]');
+      for(let i = 0; i <= arr.length; i++){
+        const query = calls.call_1 + i.toString();
+        connection.query(query);
+      }
+    }
+    else
+      connection.query(calls.call_2);
     return res.redirect('/');
   }
 }
