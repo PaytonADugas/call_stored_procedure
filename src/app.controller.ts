@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Render, Body, Res, Req} from '@nestjs/common';
 import { AppService } from './app.service';
-import {getConnection} from "typeorm";
+import { getConnection } from "typeorm";
 
 var calls = require('../public/storedProcedureCalls/calls.json');
 
@@ -21,9 +21,18 @@ export class AppController {
     const connection = getConnection();
     if(req.body.buttonPress=='update'){
       const query = calls.call_1 + (req.body.columnToChange).toString();
-      connection.query(query);
+
+      //const [results, metadata] = await sequelize.query(query);
+
+      //connection.query(query);
+
     }else if(req.body.buttonPress=='insert')
-      connection.query(calls.call_2);
+
+
+      //connection.query(calls.call_2);
+
+      //const [results, metadata] = await sequelize.query(calls.call_2);
+
     return res.redirect('/');
   }
 }
